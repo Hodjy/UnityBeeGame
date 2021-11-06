@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float m_FlyPower = 5;
     [SerializeField] private float m_MovementSpeed = 5f;
-    [SerializeField] private float m_MovementTurnSmoothTime = 0.1f;
+    [SerializeField] private float m_MovementTurnSmoothTime = 0.05f;
     [SerializeField] private Transform m_CameraAngle;
 
     private float m_TurnSmoothVelocity;
@@ -71,6 +71,30 @@ public class PlayerController : MonoBehaviour
 
     private void movePlayerByInput()
     {
+        Vector2 userInput = m_InputActions.Player.Move.ReadValue<Vector2>().normalized;
+        Vector3 moveDir = new Vector3(0,0,0);
+        float directionAngle = userInput.x * 90;
+
+        if (userInput.y != 0)
+        {
+            moveDir = userInput.y * m_CameraAngle.forward.normalized * m_MovementSpeed;
+        }
+        else if (userInput.x != 0)
+        {
+            moveDir = m_CameraAngle.forward.normalized * m_MovementSpeed;
+            moveDir.y = 0;
+        }
+
+        moveDir = Quaternion.Euler(0, directionAngle, 0) * moveDir;
+
+        m_PlayerRb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDir),
+            m_MovementTurnSmoothTime));
+        m_PlayerRb.velocity = moveDir;
+    }
+
+    //TODO probably wont be needed, can keep for future reference.
+    private void oldMovement()
+    {
         Vector2 userInput = m_InputActions.Player.Move.ReadValue<Vector2>();
         Vector3 direction = new Vector3(userInput.x, 0, userInput.y).normalized;
 
@@ -83,16 +107,18 @@ public class PlayerController : MonoBehaviour
             xAngle = Mathf.SmoothDampAngle(transform.eulerAngles.x, m_CameraAngle.eulerAngles.x,
                 ref m_TurnSmoothVelocityX, m_MovementTurnSmoothTime);
 
-            transform.rotation = Quaternion.Euler(xAngle, angle, 0f);
+            //transform.rotation = Quaternion.Euler(xAngle, angle, 0f);
 
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            Vector3 moveDir = m_CameraAngle.forward; //Quaternion.Euler(0f, targetAngle, 0f) * m_CameraAngle.forward;
             Debug.Log(m_CameraAngle.eulerAngles.x);
             //m_PlayerRb.MovePosition(transform.position + direction * m_MovementSpeed * Time.deltaTime);
+            //m_PlayerRb.AddForce(moveDir);
+            m_PlayerRb.MoveRotation(Quaternion.Euler(xAngle, angle, 0f));
             m_PlayerRb.velocity = moveDir * m_MovementSpeed;
         }
         else
         {
-            //m_PlayerRb.velocity /= m_MovementSpeed;
+            m_PlayerRb.velocity *= 0;
         }
     }
 
