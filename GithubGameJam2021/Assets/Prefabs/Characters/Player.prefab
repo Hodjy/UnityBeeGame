@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6939229060764486529}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -92,7 +92,7 @@ BoxCollider:
   m_GameObject: {fileID: 6939229060764486529}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -108,7 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f78d9db2f919a84eb93a8145382b170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CameraRotationSpeed: 5
+  m_CameraRotationSpeed: 0.5
+  m_YInverted: 1
 --- !u!1 &8493086275057617934
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,8 +336,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3bd8174239f5a4f900a776afad4059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PlayerMesh: {fileID: 0}
   m_CameraAngle: {fileID: 0}
-  m_CameraFollowTarget: {fileID: 0}
   m_MovementSpeed: 5
   m_MovementTurnSmoothTime: 0.1
   m_FlyBoostPower: 5

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotateByLookInput : MonoBehaviour
 {
-    [SerializeField] private float m_CameraRotationSpeed = 5f;
+    [SerializeField] private float m_CameraRotationSpeed = 1f;
     [SerializeField] private bool m_YInverted = true;
 
     private Vector3 m_NextPosition = new Vector3();
@@ -13,7 +13,7 @@ public class RotateByLookInput : MonoBehaviour
 
     public void rotateCameraFollowByLookInput(Vector2 i_UserInput)
     {
-        i_UserInput.Normalize();
+        //i_UserInput.Normalize();
 
         if(m_YInverted)
         {
@@ -29,7 +29,7 @@ public class RotateByLookInput : MonoBehaviour
 
         if(xAngle > 180 && xAngle < 340)
         {
-            angles.x = 340;
+           angles.x = 340;
         }
         else if(xAngle < 180 && xAngle > 40)
         {

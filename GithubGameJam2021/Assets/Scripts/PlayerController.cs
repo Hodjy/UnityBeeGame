@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody m_PlayerRb;
     private GameJamGameActions m_InputActions;
     private RotateByLookInput m_CameraRotator;
+    [SerializeField] private GameObject m_PlayerMesh;
     //[SerializeField] private GameObject m_PlayerCamera;
     //[SerializeField] private Vector3 m_CameraOffset = new Vector3(0,0.65f,-8);
     //[SerializeField] private float m_LookRotateSpeed = 5f;
@@ -99,8 +100,8 @@ public class PlayerController : MonoBehaviour
         if (moveDirection.magnitude != 0)
             m_PlayerTurnDirection = moveDirection;
 
-        m_PlayerRb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(m_PlayerTurnDirection),
-           m_MovementTurnSmoothTime));
+        m_PlayerMesh.transform.rotation = Quaternion.Slerp(m_PlayerMesh.transform.rotation, Quaternion.LookRotation(m_PlayerTurnDirection),
+           m_MovementTurnSmoothTime);
         m_PlayerRb.velocity = moveDirection;
     }
 
