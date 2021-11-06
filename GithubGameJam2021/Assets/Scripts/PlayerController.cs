@@ -7,19 +7,18 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody m_PlayerRb;
     private GameJamGameActions m_InputActions;
+    [SerializeField] private Transform m_CameraAngle;
     //[SerializeField] private GameObject m_PlayerCamera;
-    [SerializeField] private Vector3 m_CameraOffset = new Vector3(0,0.65f,-8);
-    [SerializeField] private float m_LookRotateSpeed = 5f;
+    //[SerializeField] private Vector3 m_CameraOffset = new Vector3(0,0.65f,-8);
+    //[SerializeField] private float m_LookRotateSpeed = 5f;
 
     [Header("Movement")]
-
-    [SerializeField] private float m_FlyPower = 5;
     [SerializeField] private float m_MovementSpeed = 5f;
-    [SerializeField] private float m_MovementTurnSmoothTime = 0.05f;
-    [SerializeField] private Transform m_CameraAngle;
+    [SerializeField] private float m_MovementTurnSmoothTime = 0.5f;
 
-    private float m_TurnSmoothVelocity;
-    private float m_TurnSmoothVelocityX;
+    [Header("Abilities")]
+    [SerializeField] private float m_FlyBoostPower = 5;
+    
     private bool m_IsFlying = false; // TODO check if needed. If not, remove.
 
     private void Awake()
@@ -51,9 +50,9 @@ public class PlayerController : MonoBehaviour
 
     private void rotateByLookInput()
     {
-        Vector2 lookDirection = m_InputActions.Player.Look.ReadValue<Vector2>();
-        gameObject.transform.Rotate(Vector3.up, lookDirection.x * m_LookRotateSpeed * Time.deltaTime);
-        gameObject.transform.Rotate(Vector3.right, lookDirection.y * m_LookRotateSpeed * Time.deltaTime);
+        //Vector2 lookDirection = m_InputActions.Player.Look.ReadValue<Vector2>();
+        //gameObject.transform.Rotate(Vector3.up, lookDirection.x * m_LookRotateSpeed * Time.deltaTime);
+        //gameObject.transform.Rotate(Vector3.right, lookDirection.y * m_LookRotateSpeed * Time.deltaTime);
     }
 
     private void subscribeToInputActions()
@@ -72,61 +71,33 @@ public class PlayerController : MonoBehaviour
     private void movePlayerByInput()
     {
         Vector2 userInput = m_InputActions.Player.Move.ReadValue<Vector2>().normalized;
-        Vector3 moveDir = new Vector3(0,0,0);
-        float directionAngle = userInput.x * 90;
+        Vector3 moveDirection = new Vector3(0,0,0);
+        float directionStrafeAngle = userInput.x * 90;
 
-        if (userInput.y != 0)
+        // If forward/back input, generate direction with y. 
+        // Else try to generate strafe from empty y camera forward vector.
+        if (userInput.y != 0) 
         {
-            moveDir = userInput.y * m_CameraAngle.forward.normalized * m_MovementSpeed;
+            moveDirection = userInput.y * m_CameraAngle.forward.normalized * m_MovementSpeed;
         }
         else if (userInput.x != 0)
         {
-            moveDir = m_CameraAngle.forward.normalized * m_MovementSpeed;
-            moveDir.y = 0;
+            moveDirection = m_CameraAngle.forward.normalized * m_MovementSpeed;
+            moveDirection.y = 0;
         }
 
-        moveDir = Quaternion.Euler(0, directionAngle, 0) * moveDir;
-
-        m_PlayerRb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDir),
+        moveDirection = Quaternion.Euler(0, directionStrafeAngle, 0) * moveDirection;
+        if(moveDirection.magnitude != 0)
+        m_PlayerRb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection),
             m_MovementTurnSmoothTime));
-        m_PlayerRb.velocity = moveDir;
-    }
-
-    //TODO probably wont be needed, can keep for future reference.
-    private void oldMovement()
-    {
-        Vector2 userInput = m_InputActions.Player.Move.ReadValue<Vector2>();
-        Vector3 direction = new Vector3(userInput.x, 0, userInput.y).normalized;
-
-        if (direction.magnitude > 0.1f)
-        {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + m_CameraAngle.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref m_TurnSmoothVelocity, m_MovementTurnSmoothTime);
-
-            float xAngle = 0;
-            xAngle = Mathf.SmoothDampAngle(transform.eulerAngles.x, m_CameraAngle.eulerAngles.x,
-                ref m_TurnSmoothVelocityX, m_MovementTurnSmoothTime);
-
-            //transform.rotation = Quaternion.Euler(xAngle, angle, 0f);
-
-            Vector3 moveDir = m_CameraAngle.forward; //Quaternion.Euler(0f, targetAngle, 0f) * m_CameraAngle.forward;
-            Debug.Log(m_CameraAngle.eulerAngles.x);
-            //m_PlayerRb.MovePosition(transform.position + direction * m_MovementSpeed * Time.deltaTime);
-            //m_PlayerRb.AddForce(moveDir);
-            m_PlayerRb.MoveRotation(Quaternion.Euler(xAngle, angle, 0f));
-            m_PlayerRb.velocity = moveDir * m_MovementSpeed;
-        }
-        else
-        {
-            m_PlayerRb.velocity *= 0;
-        }
+        m_PlayerRb.velocity = moveDirection;
     }
 
     private void launchPlayerUpIfFlying()
     {
         if(m_IsFlying)
         {
-            m_PlayerRb.AddForce(Vector3.up * m_FlyPower, ForceMode.Acceleration);
+            m_PlayerRb.AddForce(Vector3.up * m_FlyBoostPower, ForceMode.Acceleration);
         }
     }
 }
