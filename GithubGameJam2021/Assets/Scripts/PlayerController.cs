@@ -7,10 +7,13 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody m_PlayerRb;
     private GameJamGameActions m_InputActions;
-    [SerializeField] private Transform m_CameraAngle;
+    private RotateByLookInput m_CameraRotator;
     //[SerializeField] private GameObject m_PlayerCamera;
     //[SerializeField] private Vector3 m_CameraOffset = new Vector3(0,0.65f,-8);
     //[SerializeField] private float m_LookRotateSpeed = 5f;
+
+    [Header("Camera")]
+    [SerializeField] private Transform m_CameraAngle;
 
     [Header("Movement")]
     [SerializeField] private float m_MovementSpeed = 5f;
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
         m_InputActions = new GameJamGameActions();
         m_InputActions.Player.Enable();
         m_PlayerTurnDirection = transform.forward;
+        m_CameraRotator = GetComponentInChildren<RotateByLookInput>();
     }
 
     // Start is called before the first frame update
@@ -47,7 +51,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         //rotateByLookInput();
-        
+        Vector2 input = m_InputActions.Player.Look.ReadValue<Vector2>();
+        m_CameraRotator.rotateCameraFollowByLookInput(input);
     }
 
     private void rotateByLookInput()
@@ -95,7 +100,7 @@ public class PlayerController : MonoBehaviour
             m_PlayerTurnDirection = moveDirection;
 
         m_PlayerRb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(m_PlayerTurnDirection),
-            m_MovementTurnSmoothTime));
+           m_MovementTurnSmoothTime));
         m_PlayerRb.velocity = moveDirection;
     }
 
@@ -106,4 +111,6 @@ public class PlayerController : MonoBehaviour
             m_PlayerRb.AddForce(Vector3.up * m_FlyBoostPower, ForceMode.Acceleration);
         }
     }
+
+
 }
