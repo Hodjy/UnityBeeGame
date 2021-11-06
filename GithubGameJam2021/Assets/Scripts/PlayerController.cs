@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float m_MovementSpeed = 5f;
     [SerializeField] private float m_MovementTurnSmoothTime = 0.5f;
+    private Vector3 m_PlayerTurnDirection;
 
     [Header("Abilities")]
     [SerializeField] private float m_FlyBoostPower = 5;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         m_InputActions = new GameJamGameActions();
         m_InputActions.Player.Enable();
+        m_PlayerTurnDirection = transform.forward;
     }
 
     // Start is called before the first frame update
@@ -68,6 +70,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    //TODO try and see a more efficient way to perform this. in addition, might cause rotation/movement bug later.
     private void movePlayerByInput()
     {
         Vector2 userInput = m_InputActions.Player.Move.ReadValue<Vector2>().normalized;
@@ -87,8 +90,11 @@ public class PlayerController : MonoBehaviour
         }
 
         moveDirection = Quaternion.Euler(0, directionStrafeAngle, 0) * moveDirection;
-        if(moveDirection.magnitude != 0)
-        m_PlayerRb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection),
+        
+        if (moveDirection.magnitude != 0)
+            m_PlayerTurnDirection = moveDirection;
+
+        m_PlayerRb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(m_PlayerTurnDirection),
             m_MovementTurnSmoothTime));
         m_PlayerRb.velocity = moveDirection;
     }
