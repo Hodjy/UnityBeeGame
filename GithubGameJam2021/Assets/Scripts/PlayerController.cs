@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private GameJamGameActions m_InputActions;
     private RotateByLookInput m_CameraRotator;
     [SerializeField] private GameObject m_PlayerMesh;
+    private Animator m_PlayerAnimator;
     //[SerializeField] private GameObject m_PlayerCamera;
     //[SerializeField] private Vector3 m_CameraOffset = new Vector3(0,0.65f,-8);
     //[SerializeField] private float m_LookRotateSpeed = 5f;
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         m_PlayerRb = GetComponent<Rigidbody>();
+        m_PlayerAnimator = m_PlayerMesh.GetComponentInChildren<Animator>();
         subscribeToInputActions();
         Cursor.visible = false;
         //m_PlayerCamera.transform.position = gameObject.transform.position + m_CameraOffset;
@@ -54,6 +56,7 @@ public class PlayerController : MonoBehaviour
         //rotateByLookInput();
         Vector2 input = m_InputActions.Player.Look.ReadValue<Vector2>();
         m_CameraRotator.rotateCameraFollowByLookInput(input);
+        m_PlayerAnimator.SetFloat("f_Speed", m_PlayerRb.velocity.magnitude);
     }
 
     private void rotateByLookInput()
@@ -73,7 +76,6 @@ public class PlayerController : MonoBehaviour
     private void setIsFlying(InputAction.CallbackContext i_Context)
     {
         m_IsFlying = i_Context.performed;
-        
     }
 
     //TODO try and see a more efficient way to perform this. in addition, might cause rotation/movement bug later.
@@ -98,7 +100,9 @@ public class PlayerController : MonoBehaviour
         moveDirection = Quaternion.Euler(0, directionStrafeAngle, 0) * moveDirection;
         
         if (moveDirection.magnitude != 0)
+        {
             m_PlayerTurnDirection = moveDirection;
+        }   
 
         m_PlayerMesh.transform.rotation = Quaternion.Slerp(m_PlayerMesh.transform.rotation, Quaternion.LookRotation(m_PlayerTurnDirection),
            m_MovementTurnSmoothTime);
