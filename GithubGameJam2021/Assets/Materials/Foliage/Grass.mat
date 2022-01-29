@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Grass
-  m_Shader: {fileID: 4800000, guid: 0f4122b9a743b744abe2fb6a0a88868b, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: a68089877f9ce87479e1226227569ba7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -59,7 +59,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_697cd9a592e746f2973f44bb29ece026: 1
+    - Vector1_8284e3ab40db4800bb18f0296ebdf9b2: 0.3
+    - Vector1_fe05473f7a0f41eea647c6fea3e32cd9: 2
     - _AO: 2.4
     - _BaseLight: 0.35
     - _BumpScale: 1
@@ -83,6 +98,11 @@ Material:
     - _WindQuality: 0
     - _ZWrite: 1
     m_Colors:
+    - Color_410fcca70c0142c7bc58e30c7143dbef: {r: 0.4000089, g: 0.8396226, b: 0.411342, a: 0}
+    - Color_ae2841fe1e7141779d7fd455e8398ea9: {r: 0.106, g: 0.509434, b: 0.001821392, a: 0}
+    - Color_f222c4ed3d414eeea02a585c33961baa: {r: 0.738, g: 0.8962264, b: 0.1724178, a: 0}
+    - Vector2_9cf6add09a574027b7a9e6b9f5f6b999: {r: 2, g: 1, b: 1, a: 0}
+    - Vector2_a30df03163b641d78a5863de7e76c085: {r: 0.3, g: 0, b: 0, a: 0}
     - _Color: {r: 0.22897156, g: 0.7830189, b: 0.18098079, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
