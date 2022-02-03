@@ -25,6 +25,7 @@ namespace ColorSystem
             m_Colors.Add(eColors.Violet, new Color(1, 0, 1));
             m_Colors.Add(eColors.White, Color.white);
             m_Colors.Add(eColors.Black, Color.black);
+            m_Colors.Add(eColors.PlayerDefault, Color.white);
         }
 
         public static Colors GetInstance()
@@ -58,7 +59,8 @@ namespace ColorSystem
         Orange,
         Violet,
         White,
-        Black
+        Black,
+        PlayerDefault
     }
 }
 

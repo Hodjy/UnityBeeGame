@@ -6,20 +6,19 @@ namespace ColorSystem
 {
     public class ColorReceiver : MonoBehaviour
     {
-        [SerializeField]
-        private Material m_MaterialToColor; // for self, will take the chosen color from mCurrentColorType.
-
-        [SerializeField]
-        private eColors m_CurrentColorType;
-
+        [SerializeField] private eColors m_CurrentColorType;
+        private IColorReactor m_ColorReactor;
         private ColorHolder m_CurrentColorHolder;
 
-        [SerializeField]
-        private IColorReactor m_ColorReactor;
+        private void Awake()
+        {
+            m_CurrentColorHolder = gameObject.AddComponent<ColorHolder>();
+            m_ColorReactor = gameObject.GetComponent<IColorReactor>();
+        }
 
         private void Start()
         {
-            m_CurrentColorHolder = new ColorHolder(m_CurrentColorType, m_MaterialToColor);
+            m_CurrentColorHolder.setColor(m_CurrentColorType);
         }
 
         private void OnCollisionEnter(Collision collision)

@@ -9,15 +9,18 @@ namespace ColorSystem
     /// </summary>
     public class ColorHolder : MonoBehaviour
     {
-        private eColors m_CurrentColorType;
+        [SerializeField] private eColors m_CurrentColorType;
+        [SerializeField] private Renderer m_GameObjectRenderer;
+        [SerializeField] private int m_MaterialToChangeIndex = 0;
 
-        [SerializeField]
-        private Material m_MaterialToColor;
-
-        public ColorHolder(eColors i_ColorType, Material i_MaterialToColor)
+        private void Awake()
         {
-            m_MaterialToColor = i_MaterialToColor;
-            setColor(i_ColorType);
+            if(m_GameObjectRenderer == null)
+            {
+                m_GameObjectRenderer = gameObject.GetComponent<Renderer>();
+            }
+
+            setColor(m_CurrentColorType);
         }
 
         /// <summary>
@@ -27,16 +30,17 @@ namespace ColorSystem
         /// <param name="i_Color"></param>
         public void setColor(eColors i_ColorType)
         {
-            if(m_MaterialToColor != null)
+            if (m_GameObjectRenderer != null)
             {
                 Color color = Colors.GetInstance().getColor(i_ColorType);
 
                 m_CurrentColorType = i_ColorType;
-                m_MaterialToColor.color = color;
-                
+                m_GameObjectRenderer.materials[m_MaterialToChangeIndex].color = color;
             }
         }
 
         public eColors CurrentColorType { get => m_CurrentColorType; }
     }
+
+
 }
