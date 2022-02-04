@@ -11,12 +11,18 @@ namespace ColorSystem
     public class ColorSpreader : MonoBehaviour
     {
         [SerializeField] private List<GameObject> m_ObjectsParentsToSpread;
+        [SerializeField] private List<GameObject> m_ObjectsParentsToSpreadSecondary;
 
-        public void Spread(eColors i_ColorToSpread)
+        public void SpreadToMain(eColors i_ColorToSpread)
+        {
+            spread(i_ColorToSpread, m_ObjectsParentsToSpread);
+        }
+
+        private void spread(eColors i_ColorToSpread, List<GameObject> io_ObjectsToColor)
         {
             ColorSpreaderSignal[] signals;
 
-            foreach (GameObject gameObject in m_ObjectsParentsToSpread)
+            foreach (GameObject gameObject in io_ObjectsToColor)
             {
                 signals = gameObject.GetComponentsInChildren<ColorSpreaderSignal>();
 
@@ -25,6 +31,11 @@ namespace ColorSystem
                     sig.ChangeColor(i_ColorToSpread);
                 }
             }
+        }
+
+        public void SpreadSecondary(eColors i_ColorToSpread)
+        {
+            spread(i_ColorToSpread, m_ObjectsParentsToSpreadSecondary);
         }
     }
 }

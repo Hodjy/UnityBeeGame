@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private RotateByLookInput m_CameraRotator;
     [SerializeField] private GameObject m_PlayerMesh;
     private Animator m_PlayerAnimator;
+    private bool m_IsMovementAvailable = true;
     //[SerializeField] private GameObject m_PlayerCamera;
     //[SerializeField] private Vector3 m_CameraOffset = new Vector3(0,0.65f,-8);
     //[SerializeField] private float m_LookRotateSpeed = 5f;
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_FlyBoostPower = 5;
     
     private bool m_IsFlying = false; // TODO check if needed. If not, remove.
+
+    public bool IsMovementAvailable { get => m_IsMovementAvailable; set => m_IsMovementAvailable = value; }
 
     private void Awake()
     {
@@ -48,7 +51,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame, for rigidbodys.
     void FixedUpdate()
     {
-        movePlayerByInput();
+        if (m_IsMovementAvailable)
+        {
+            movePlayerByInput();
+        }
     }
 
     private void Update()
@@ -89,6 +95,7 @@ public class PlayerController : MonoBehaviour
         // Else try to generate strafe from empty y camera forward vector.
         if (userInput.y != 0) 
         {
+            directionStrafeAngle *= userInput.y < 0 ? -1 : 1; 
             moveDirection = userInput.y * m_CameraAngle.forward.normalized * m_MovementSpeed;
         }
         else if (userInput.x != 0)
@@ -97,6 +104,7 @@ public class PlayerController : MonoBehaviour
             moveDirection.y = 0;
         }
 
+        //Apply the X direction to go towards to into the moveDirection
         moveDirection = Quaternion.Euler(0, directionStrafeAngle, 0) * moveDirection;
         
         if (moveDirection.magnitude != 0)
@@ -117,5 +125,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Naive implementation, should be implemented as a state. 
+    /// if there will be more states for the player, we should consider re-implementing this.
+    /// </summary>
+    public void Knockbacked(Vector3 i_ForceDirection)
+    {
+        float timeToKnockback = 0.7f;
+        float forceStrength = 3;
+        enableMovement(false);
+        StartCoroutine("KnockbackRotation", timeToKnockback);
+        m_PlayerRb.velocity = new Vector3(0, 0, 0);
+        m_PlayerRb.AddForce(i_ForceDirection * forceStrength, ForceMode.Impulse);
+    }
 
+    IEnumerator KnockbackRotation(float i_TimeToRotate)
+    {
+        Quaternion startRot = m_PlayerMesh.transform.rotation;
+        //float endRot = startRot + 360f;
+        float currentRot;
+        float time = 0.0f;
+
+        while (time < i_TimeToRotate)
+        {
+            time += Time.deltaTime;
+
+            m_PlayerMesh.transform.rotation = startRot * Quaternion.AngleAxis(time / i_TimeToRotate * -360f, Vector3.right);
+
+            yield return null;
+        }
+
+        m_PlayerRb.velocity = new Vector3(0, 0, 0);
+        enableMovement(true);
+    }
+
+    private void enableMovement(bool i_IsEnabled)
+    {
+        m_IsMovementAvailable = i_IsEnabled;
+    }
 }

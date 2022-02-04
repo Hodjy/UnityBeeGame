@@ -14,6 +14,10 @@ namespace ColorSystem
         {
             m_CurrentColorHolder = gameObject.AddComponent<ColorHolder>();
             m_ColorReactor = gameObject.GetComponent<IColorReactor>();
+            if(m_ColorReactor == null)
+            {
+                Debug.Log(gameObject + "Missing IColorReactor implementation!");
+            }
         }
 
         private void Start()
@@ -38,10 +42,8 @@ namespace ColorSystem
                     return;
                 }
 
-                if (playerColorHolder.CurrentColorType == m_CurrentColorHolder.CurrentColorType)
-                {
-                    m_ColorReactor.React(collision.gameObject); // Send the player to the reactor
-                }
+                // Send the player to the reactor
+                m_ColorReactor.React(collision.gameObject, playerColorHolder, m_CurrentColorHolder); 
             }
         }
     }
