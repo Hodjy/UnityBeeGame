@@ -28,7 +28,7 @@ namespace ColorSystem
         /// </summary>
         /// <param name="i_ColorType"></param>
         /// <param name="i_Color"></param>
-        public void setColor(eColors i_ColorType)
+        virtual public void setColor(eColors i_ColorType)
         {
             if (m_GameObjectRenderer != null)
             {

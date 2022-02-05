@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!136 &5881730248365012702
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564431192802936995}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.015
+  m_Height: 0.05
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.01}
 --- !u!1 &964597973393483188
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,9 +121,9 @@ GameObject:
   - component: {fileID: 8057065516469388515}
   - component: {fileID: 8700796457226389521}
   - component: {fileID: 8700796457226389527}
-  - component: {fileID: 5881730249402660179}
+  - component: {fileID: 6600005543819496073}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,12 +176,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerMesh: {fileID: 5165170715177931368}
   m_CameraAngle: {fileID: 0}
+  m_CinemachineVCam: {fileID: 0}
   m_MovementSpeed: 30
   m_MovementTurnSmoothTime: 0.1
   m_MovementSpeedBoostPower: 20
   m_MovementSpeedBoostTime: 5
   m_FlyBoostPower: 5
---- !u!114 &5881730249402660179
+--- !u!114 &6600005543819496073
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,20 +307,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CameraRotationSpeed: 0.5
   m_YInverted: 1
---- !u!136 &5881730248365012702
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564431192802936995}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.015
-  m_Height: 0.05
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0.01}
 --- !u!135 &5881730248898883845
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Abilities")]
     [SerializeField] private float m_FlyBoostPower = 5;
-    
+
     private bool m_IsFlying = false; // TODO check if needed. If not, remove.
 
     public bool IsMovementAvailable { get => m_IsMovementAvailable; set => m_IsMovementAvailable = value; }
