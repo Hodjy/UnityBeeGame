@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,10 +17,16 @@ public class PlayerController : MonoBehaviour
 
     [Header("Camera")]
     [SerializeField] private Transform m_CameraAngle;
+    [SerializeField] private GameObject m_CinemachineVCam;
+    private Cinemachine3rdPersonFollow m_Cinemachine3rdPersonFollow;
+    private Vector3 m_BaseCameraDamping;
 
     [Header("Movement")]
     [SerializeField] private float m_MovementSpeed = 5f;
+    private float m_BaseMovementSpeed;
     [SerializeField] private float m_MovementTurnSmoothTime = 0.5f;
+    [SerializeField] private float m_MovementSpeedBoostPower = 5f;
+    [SerializeField] private float m_MovementSpeedBoostTime = 5f;
     private Vector3 m_PlayerTurnDirection;
 
     [Header("Abilities")]
@@ -32,13 +38,21 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        initVars();
+    }
+
+    private void initVars()
+    {
         m_InputActions = new GameJamGameActions();
         m_InputActions.Player.Enable();
         m_PlayerTurnDirection = transform.forward;
         m_CameraRotator = GetComponentInChildren<RotateByLookInput>();
+        m_BaseMovementSpeed = m_MovementSpeed;
+        m_Cinemachine3rdPersonFollow = m_CinemachineVCam.GetComponent<CinemachineVirtualCamera>()
+            .GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+        m_BaseCameraDamping = m_Cinemachine3rdPersonFollow.Damping;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         m_PlayerRb = GetComponent<Rigidbody>();
@@ -132,11 +146,11 @@ public class PlayerController : MonoBehaviour
     public void Knockbacked(Vector3 i_ForceDirection)
     {
         float timeToKnockback = 0.7f;
-        float forceStrength = 3;
+        float forceStrength = 15;
         enableMovement(false);
         StartCoroutine("KnockbackRotation", timeToKnockback);
         m_PlayerRb.velocity = new Vector3(0, 0, 0);
-        m_PlayerRb.AddForce(i_ForceDirection * forceStrength, ForceMode.Impulse);
+        m_PlayerRb.AddForce(i_ForceDirection.normalized * forceStrength, ForceMode.Impulse);
     }
 
     IEnumerator KnockbackRotation(float i_TimeToRotate)
@@ -162,5 +176,26 @@ public class PlayerController : MonoBehaviour
     private void enableMovement(bool i_IsEnabled)
     {
         m_IsMovementAvailable = i_IsEnabled;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Speed Boost"))
+        {
+            StopCoroutine("startMovementBoost");
+            StartCoroutine("startMovementBoost");
+        }
+    }
+
+    IEnumerator startMovementBoost()
+    {
+        m_MovementSpeed = m_BaseMovementSpeed + m_MovementSpeedBoostPower;
+        Vector3 damp = m_BaseCameraDamping / 2;
+        m_Cinemachine3rdPersonFollow.Damping = damp;
+
+        yield return new WaitForSeconds(m_MovementSpeedBoostTime);
+
+        m_MovementSpeed = m_BaseMovementSpeed;
+        m_Cinemachine3rdPersonFollow.Damping = m_BaseCameraDamping;
     }
 }
