@@ -2,6 +2,7 @@ using System.Collections;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using AudioSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class PlayerController : MonoBehaviour
     private Cinemachine3rdPersonFollow m_Cinemachine3rdPersonFollow;
     private Vector3 m_BaseCameraDamping;
     private float m_BaseCameraDistance;
+
+    [Header("Audio")]
+    [SerializeField] private AudioManager m_AudioManager;
+    private string m_SpeedBoostName = "SpeedBoost";
 
     [Header("Movement")]
     [SerializeField] private float m_MovementSpeed = 5f;
@@ -184,6 +189,7 @@ public class PlayerController : MonoBehaviour
     {
         if(other.CompareTag("Speed Boost"))
         {
+            m_AudioManager.PlaySfx(m_SpeedBoostName);
             StopCoroutine("startMovementBoost");
             StartCoroutine("startMovementBoost");
         }

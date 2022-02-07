@@ -550,7 +550,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &76754712 stripped
 Transform:
@@ -646,7 +646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 814334174404227234, guid: 4f9947df55cb2ea4ead3c165108e0a63, type: 3}
       propertyPath: m_CurrentColorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 814334174404227237, guid: 4f9947df55cb2ea4ead3c165108e0a63, type: 3}
       propertyPath: m_SecondaryColor
@@ -671,6 +671,10 @@ PrefabInstance:
     - target: {fileID: 7117651356608476585, guid: 4f9947df55cb2ea4ead3c165108e0a63, type: 3}
       propertyPath: m_CurrentColorType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011769139636929377, guid: 4f9947df55cb2ea4ead3c165108e0a63, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -34.4
       objectReference: {fileID: 0}
     - target: {fileID: 8011769140554900926, guid: 4f9947df55cb2ea4ead3c165108e0a63, type: 3}
       propertyPath: m_CurrentColorType
@@ -5735,7 +5739,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7225362262138510385, guid: 16cfe0f76e1afc24ca16a7080d66f082, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7225362262138510385, guid: 16cfe0f76e1afc24ca16a7080d66f082, type: 3}
       propertyPath: m_LocalScale.x
@@ -10444,6 +10448,7 @@ GameObject:
   - component: {fileID: 1259354027}
   - component: {fileID: 1259354031}
   - component: {fileID: 1259354032}
+  - component: {fileID: 1259354033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -10602,6 +10607,53 @@ MonoBehaviour:
   reflectionTarget: {fileID: 884938250616595183}
   reflectionPlaneOffset: -0.337
   hideReflectionCamera: 0
+--- !u!114 &1259354033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259354026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88912efbba008794f88938c2ac21ffa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Music:
+  - key: Main
+    value:
+      m_AudioClip: {fileID: 8300000, guid: 98659454b1a320c48a30c0f1e67c2e02, type: 3}
+      m_Volume: 0.3
+      m_Pitch: 1
+      m_IsLooping: 1
+  m_Ambience:
+  - key: Main
+    value:
+      m_AudioClip: {fileID: 8300000, guid: 3d9bdf624f3f5b449ab8fb098cf150fe, type: 3}
+      m_Volume: 0.3
+      m_Pitch: 1
+      m_IsLooping: 1
+  m_SFX:
+  - key: SpeedBoost
+    value:
+      m_AudioClip: {fileID: 8300000, guid: 786e72d0ed1694c4ca45e2e24f2d5b2e, type: 3}
+      m_Volume: 0.3
+      m_Pitch: 1
+      m_IsLooping: 0
+  - key: BeehiveHit
+    value:
+      m_AudioClip: {fileID: 8300000, guid: 5e2f6f99e0824b343879f84904816888, type: 3}
+      m_Volume: 0.3
+      m_Pitch: 1
+      m_IsLooping: 0
+  - key: PollenHit
+    value:
+      m_AudioClip: {fileID: 8300000, guid: c30fc30fc5af5f5409faa6c24dd3ecb6, type: 3}
+      m_Volume: 0.3
+      m_Pitch: 1
+      m_IsLooping: 0
+  m_MusicVolume: 0.362
+  m_SFXVolume: 0.581
 --- !u!4 &1270854495 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7401009755507729770, guid: 335946c4528dd1e4cb26cd4893d8ac70, type: 3}
@@ -10798,7 +10850,7 @@ Transform:
   - {fileID: 673115984}
   - {fileID: 1131573896}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1285526269
 GameObject:
@@ -12639,7 +12691,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7225362262138510385, guid: 16cfe0f76e1afc24ca16a7080d66f082, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7225362262138510385, guid: 16cfe0f76e1afc24ca16a7080d66f082, type: 3}
       propertyPath: m_LocalScale.x
@@ -15437,7 +15489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 814334174404227234, guid: 4f9947df55cb2ea4ead3c165108e0a63, type: 3}
       propertyPath: m_CurrentColorType
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 814334174404227237, guid: 4f9947df55cb2ea4ead3c165108e0a63, type: 3}
       propertyPath: m_SecondaryColor
@@ -15462,6 +15514,10 @@ PrefabInstance:
     - target: {fileID: 7117651356608476585, guid: 4f9947df55cb2ea4ead3c165108e0a63, type: 3}
       propertyPath: m_CurrentColorType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011769139636929377, guid: 4f9947df55cb2ea4ead3c165108e0a63, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -28.4
       objectReference: {fileID: 0}
     - target: {fileID: 8011769140554900926, guid: 4f9947df55cb2ea4ead3c165108e0a63, type: 3}
       propertyPath: m_CurrentColorType
@@ -16167,6 +16223,14 @@ PrefabInstance:
       propertyPath: m_CurrentColorType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8011769139636929377, guid: 4f9947df55cb2ea4ead3c165108e0a63, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -12.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011769139636929378, guid: 4f9947df55cb2ea4ead3c165108e0a63, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8011769140554900926, guid: 4f9947df55cb2ea4ead3c165108e0a63, type: 3}
       propertyPath: m_CurrentColorType
       value: 7
@@ -16533,17 +16597,17 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
   shallowColor: {r: 0, g: 0.5799813, b: 1, a: 1}
-  deepColor: {r: 0, g: 0.42727515, b: 0.6784314, a: 1}
+  deepColor: {r: 0, g: 0.4272733, b: 0.6784314, a: 1}
   colorDepth: 4
-  horizonColor: {r: 0, g: 0.22727057, b: 0.8, a: 1}
+  horizonColor: {r: 0, g: 0.2272687, b: 0.8, a: 1}
   horizonDistance: 20
   shoreFade: 0
-  shoreColor: {r: 0, g: 0.98039216, b: 0.30178034, a: 0}
+  shoreColor: {r: 0, g: 0.98039216, b: 0.3017785, a: 0}
   shoreStrength: 0
   shoreBlend: 0
   shoreDepth: 0
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.2038421, g: 0.30972004, b: 0.517647, a: 0}
+  underwaterColor: {r: 0.20384035, g: 0.3097182, b: 0.517647, a: 0}
   underwaterColorStrength: 0
   underwaterRefractionStrength: 0.115
   surfaceFoamTexture: {fileID: 2800000, guid: d3b0d77dfe711a04c8ff18ecc260aa66, type: 3}
@@ -16742,6 +16806,10 @@ PrefabInstance:
       propertyPath: m_CameraAngle
       value: 
       objectReference: {fileID: 1259354030}
+    - target: {fileID: 8700796457226389527, guid: b1321300115a04e41941fcab109979a7, type: 3}
+      propertyPath: m_AudioManager
+      value: 
+      objectReference: {fileID: 1259354033}
     - target: {fileID: 8700796457226389527, guid: b1321300115a04e41941fcab109979a7, type: 3}
       propertyPath: m_CinemachineVCam
       value: 

@@ -1,4 +1,4 @@
-using System.Collections;
+using AudioSystem;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,7 @@ namespace ColorSystem
     {
         [SerializeField] private List<GameObject> m_HiddenGameObjects;
         private bool m_IsHiveActivated = false;
+        private const string rm_HiveHitSFXName = "BeehiveHit";
 
         //Is needed for painting all the game objects relating to this objects reaction.
         [SerializeField] private ColorSpreader m_ColorSpreader;
@@ -40,7 +41,8 @@ namespace ColorSystem
                 obj.SetActive(true);
             }
 
-            i_CollidedObjColor.setColor(eColors.PlayerDefault); // + sfx
+            FindObjectOfType<AudioManager>().PlaySfx(rm_HiveHitSFXName);
+            i_CollidedObjColor.setColor(eColors.PlayerDefault); 
             knockbackPlayer(i_Player);
         }
 

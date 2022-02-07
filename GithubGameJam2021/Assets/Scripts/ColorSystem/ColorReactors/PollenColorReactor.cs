@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using AudioSystem;
 using UnityEngine;
 
 namespace ColorSystem
 {
     public class PollenColorReactor : MonoBehaviour, IColorReactor
     {
+        private const string rm_PollenHitSFXName = "PollenHit";
+
         private void Start()
         {
             ColorSpreader colorSpreader = GetComponent<ColorSpreader>();
@@ -17,6 +18,7 @@ namespace ColorSystem
 
         public void React(GameObject i_CollidedObject, ColorHolder i_CollidedObjColor, ColorHolder i_SelfColor)
         {
+            FindObjectOfType<AudioManager>().PlaySfx(rm_PollenHitSFXName);
             i_CollidedObjColor.setColor(i_SelfColor.CurrentColorType);
             knockbackPlayer(i_CollidedObject);
         }
