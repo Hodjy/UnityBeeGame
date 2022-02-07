@@ -1,5 +1,27 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1810492630465787522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62c9c65cf3354c93be831c8bc075510, type: 3}
+  m_Name: NewScreenSpaceAmbientOcclusion
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  m_Shader: {fileID: 4800000, guid: 0849e84e3d62649e8882e9d6f056a017, type: 3}
+  m_Settings:
+    Downsample: 0
+    Source: 1
+    NormalSamples: 1
+    Intensity: 3.55
+    DirectLightingStrength: 0.246
+    Radius: 0.035
+    SampleCount: 6
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,8 +34,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
   m_Name: UniversalRenderPipelineAsset_Renderer
   m_EditorClassIdentifier: 
-  m_RendererFeatures: []
-  m_RendererFeatureMap: 
+  m_RendererFeatures:
+  - {fileID: 4977826570505190718}
+  - {fileID: -1810492630465787522}
+  m_RendererFeatureMap: 3e7d7668e4ca14457ec99f848bd6dfe6
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -42,3 +66,29 @@ MonoBehaviour:
   m_ShadowTransparentReceive: 1
   m_RenderingMode: 0
   m_AccurateGbufferNormals: 0
+--- !u!114 &4977826570505190718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a401b6b1bb7fb24ea1bff49cd1e0f13, type: 3}
+  m_Name: NewCausticsFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    strength: 3
+    rgbSplit: 0.3
+    shadowMask: 1
+    texture: {fileID: 2800000, guid: b3f9fed74fb5f1c4ea4fe5b062c3b953, type: 3}
+    scale: 5.65
+    speed: 0.125
+    waterLevel: 0
+    depth: {x: 0, y: 4}
+    fade: 1
+    renderPassEvent: 400
+    debug: 0
+  causticsShader: {fileID: 4800000, guid: e8cdbdcc4287bd344a1d042d8f601b9a, type: 3}

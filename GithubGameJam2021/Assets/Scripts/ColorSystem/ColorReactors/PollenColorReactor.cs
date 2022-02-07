@@ -8,8 +8,11 @@ namespace ColorSystem
     {
         private void Start()
         {
-            GetComponent<ColorSpreader>().SpreadToMain(
-                GetComponent<ColorHolder>().CurrentColorType);
+            ColorSpreader colorSpreader = GetComponent<ColorSpreader>();
+            if(colorSpreader != null)
+            {
+                colorSpreader.SpreadToMain(GetComponent<ColorHolder>().CurrentColorType);
+            }
         }
 
         public void React(GameObject i_CollidedObject, ColorHolder i_CollidedObjColor, ColorHolder i_SelfColor)

@@ -105,6 +105,7 @@ MonoBehaviour:
   components:
   - {fileID: -2849703248825031171}
   - {fileID: -3947017119250629009}
+  - {fileID: 3439787804491986361}
 --- !u!114 &3439787804491986361
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -121,10 +122,10 @@ MonoBehaviour:
   m_AdvancedMode: 0
   lift:
     m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 1, y: 1, z: 1, w: 0.011173182}
   gamma:
     m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 0.99285716, y: 1, z: 0.8565285, w: 0.18994413}
   gain:
     m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.2793296}

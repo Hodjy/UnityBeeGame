@@ -196,8 +196,8 @@ public class PlayerController : MonoBehaviour
         float boostCamDistance = m_BaseCameraDistance + 30;
         m_Cinemachine3rdPersonFollow.Damping = damp;
 
-        StopCoroutine("moveCameraDistance");
-        StartCoroutine("moveCameraDistance", boostCamDistance);
+        //StopCoroutine("moveCameraDistance");
+        //StartCoroutine("moveCameraDistance", boostCamDistance);
         
 
         yield return new WaitForSeconds(m_MovementSpeedBoostTime);
@@ -205,8 +205,8 @@ public class PlayerController : MonoBehaviour
         m_MovementSpeed = m_BaseMovementSpeed;
         m_Cinemachine3rdPersonFollow.Damping = m_BaseCameraDamping;
 
-        StopCoroutine("moveCameraDistance");
-        StartCoroutine("moveCameraDistance", m_BaseCameraDistance);
+        //StopCoroutine("moveCameraDistance");
+        //StartCoroutine("moveCameraDistance", m_BaseCameraDistance);
     }
 
     IEnumerator moveCameraDistance(float i_NewDistance)
