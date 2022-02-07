@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody m_PlayerRb;
     private GameJamGameActions m_InputActions;
-    private RotateByLookInput m_CameraRotator;
     [SerializeField] private GameObject m_PlayerMesh;
     private Animator m_PlayerAnimator;
     private bool m_IsMovementAvailable = true;
@@ -19,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [Header("Camera")]
     [SerializeField] private Transform m_CameraAngle;
     [SerializeField] private GameObject m_CinemachineVCam;
+    private RotateByLookInput m_CameraRotator;
     private Cinemachine3rdPersonFollow m_Cinemachine3rdPersonFollow;
     private Vector3 m_BaseCameraDamping;
     private float m_BaseCameraDistance;

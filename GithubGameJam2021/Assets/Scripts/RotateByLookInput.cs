@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RotateByLookInput : MonoBehaviour
@@ -27,13 +25,13 @@ public class RotateByLookInput : MonoBehaviour
         angles.z = 0;
         float xAngle = transform.localEulerAngles.x;
 
-        if(xAngle > 180 && xAngle < 340)
+        if(xAngle > 220 && xAngle < 320)
         {
-           angles.x = 340;
+           angles.x = 320;
         }
-        else if(xAngle < 180 && xAngle > 40)
+        else if(xAngle < 160 && xAngle > 60)
         {
-            angles.x = 40;
+            angles.x = 60;
         }
 
         transform.localEulerAngles = angles;
