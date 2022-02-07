@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PT_Pine_Tree_Leaves_Mat
-  m_Shader: {fileID: 4800000, guid: 77e1a76a38ecd5a46a270afb12894dd5, type: 3}
-  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _CUSTOMCOLORSTINTING_ON _CUSTOMWIND_ON _TRANSLUCENCYONOFF_ON
+  m_Name: PT_Pine_Tree_Trunk_NoWind_Mat
+  m_Shader: {fileID: 4800000, guid: 9644638587573544181f148540ce0ce0, type: 3}
+  m_ShaderKeywords: _CUSTOMWIND_ON _WINDTRUNKMASKONOFF_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseTexture:
-        m_Texture: {fileID: 2800000, guid: 47c82777887e3fc46bc141849b1b3ccb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5733ec0c27e7c9d41a230d27ca7b85d4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 47c82777887e3fc46bc141849b1b3ccb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5733ec0c27e7c9d41a230d27ca7b85d4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -66,50 +66,45 @@ Material:
     m_Floats:
     - _AlphaCutoff: 0.5
     - _BumpScale: 1
-    - _CUSTOMCOLORSTINTING: 1
+    - _CUSTOMCOLORSTINTING: 0
     - _CUSTOMWIND: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DstBlend: 10
-    - _Float5: 0.08
+    - _DstBlend: 0
+    - _Float2: 2.56
+    - _Float4: 0.08
+    - _Float6: 1.03
+    - _Float7: 0.3
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
-    - _Gradient: 0.077
-    - _GradientPower: 2.56
-    - _LeavesThickness: 0.513
-    - _MaskClipValue: 0.5
+    - _Gradient: 1
+    - _GradientPower: 1
     - _Metallic: 0
-    - _Mode: 3
+    - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SNOWONOFF: 0
-    - _Smoothness: 0
+    - _Smoothness: 0.261
     - _SmoothnessTextureChannel: 0
     - _SnowAmount: 1
-    - _SnowCoverage: 0.453
-    - _SnowGradient: 0.446
+    - _SnowCoverage: 0.45
+    - _SnowFade: 0.83
+    - _SnowGradient: 0.83
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TRANSLUCENCYONOFF: 1
-    - _TransAmbient: 0.7
-    - _TransDirect: 1
-    - _TransNormal: 0.5
-    - _TransNormalDistortion: 0.1
-    - _TransScattering: 2
-    - _TransShadow: 0.5
-    - _TransStrength: 1
-    - _Translucency: 7.8
+    - _TrunkMask: 0
     - _UVSec: 0
     - _WINDMASKONOFF: 0
+    - _WINDTRUNKMASKONOFF: 1
     - _WindDensity: 0.05
-    - _WindMovement: 2.15
+    - _WindMovement: 0
     - _WindStrength: 0.5
-    - _ZWrite: 0
+    - _ZWrite: 1
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GroundColor: {r: 0.027901389, g: 0.103773594, b: 0.043993797, a: 1}
-    - _TopColor: {r: 0.10537558, g: 0.6037736, b: 0.17144834, a: 1}
+    - _GroundColor: {r: 0.08490568, g: 0.05234205, b: 0.04846032, a: 1}
+    - _TopColor: {r: 0.4811321, g: 0.4036026, b: 0.2382966, a: 1}
   m_BuildTextureStacks: []

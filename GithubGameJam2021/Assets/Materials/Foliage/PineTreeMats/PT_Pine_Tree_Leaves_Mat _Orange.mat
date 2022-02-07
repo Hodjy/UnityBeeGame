@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PT_Pine_Tree_Leaves_Mat
+  m_Name: PT_Pine_Tree_Leaves_Mat _Orange
   m_Shader: {fileID: 4800000, guid: 77e1a76a38ecd5a46a270afb12894dd5, type: 3}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _CUSTOMCOLORSTINTING_ON _CUSTOMWIND_ON _TRANSLUCENCYONOFF_ON
   m_LightmapFlags: 4
@@ -110,6 +110,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GroundColor: {r: 0.027901389, g: 0.103773594, b: 0.043993797, a: 1}
-    - _TopColor: {r: 0.10537558, g: 0.6037736, b: 0.17144834, a: 1}
+    - _GroundColor: {r: 0.101960786, g: 0.03529412, b: 0.02745098, a: 1}
+    - _TopColor: {r: 0.77254903, g: 0.16862746, b: 0.03137255, a: 1}
   m_BuildTextureStacks: []

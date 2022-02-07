@@ -12,7 +12,13 @@ namespace ColorSystem
         //Is needed for painting all the game objects relating to this objects reaction.
         [SerializeField] private ColorSpreader m_ColorSpreader;
 
-        [SerializeField] private eColors m_SecondaryColor; 
+        //[SerializeField] private eColors m_SecondaryColor;
+
+        private void Start()
+        {
+            m_ColorSpreader.SpreadToMain(GetComponent<ColorHolder>().CurrentColorType);
+            //m_ColorSpreader.SpreadSecondary(m_SecondaryColor);
+        }
 
         public void React(GameObject i_GameObject, ColorHolder i_CollidedObjColor, ColorHolder i_SelfColor)
         {
@@ -29,9 +35,6 @@ namespace ColorSystem
         private void activateHiddenObjsAndReactPlayer(GameObject i_Player, ColorHolder i_CollidedObjColor,
             ColorHolder i_SelfColorHolder)
         {
-            m_ColorSpreader.SpreadToMain(i_SelfColorHolder.CurrentColorType);
-            m_ColorSpreader.SpreadSecondary(m_SecondaryColor);
-
             foreach (GameObject obj in m_HiddenGameObjects)
             {
                 obj.SetActive(true);

@@ -6,6 +6,12 @@ namespace ColorSystem
 {
     public class PollenColorReactor : MonoBehaviour, IColorReactor
     {
+        private void Start()
+        {
+            GetComponent<ColorSpreader>().SpreadToMain(
+                GetComponent<ColorHolder>().CurrentColorType);
+        }
+
         public void React(GameObject i_CollidedObject, ColorHolder i_CollidedObjColor, ColorHolder i_SelfColor)
         {
             i_CollidedObjColor.setColor(i_SelfColor.CurrentColorType);

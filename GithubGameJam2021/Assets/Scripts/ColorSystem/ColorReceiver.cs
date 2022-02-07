@@ -13,16 +13,12 @@ namespace ColorSystem
         private void Awake()
         {
             m_CurrentColorHolder = gameObject.AddComponent<ColorHolder>();
+            m_CurrentColorHolder.setColor(m_CurrentColorType);
             m_ColorReactor = gameObject.GetComponent<IColorReactor>();
             if(m_ColorReactor == null)
             {
                 Debug.Log(gameObject + "Missing IColorReactor implementation!");
             }
-        }
-
-        private void Start()
-        {
-            m_CurrentColorHolder.setColor(m_CurrentColorType);
         }
 
         private void OnCollisionEnter(Collision collision)

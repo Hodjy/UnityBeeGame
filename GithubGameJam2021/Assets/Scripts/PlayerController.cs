@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject m_CinemachineVCam;
     private Cinemachine3rdPersonFollow m_Cinemachine3rdPersonFollow;
     private Vector3 m_BaseCameraDamping;
+    private float m_BaseCameraDistance;
 
     [Header("Movement")]
     [SerializeField] private float m_MovementSpeed = 5f;
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
         m_Cinemachine3rdPersonFollow = m_CinemachineVCam.GetComponent<CinemachineVirtualCamera>()
             .GetCinemachineComponent<Cinemachine3rdPersonFollow>();
         m_BaseCameraDamping = m_Cinemachine3rdPersonFollow.Damping;
+        m_BaseCameraDistance = m_Cinemachine3rdPersonFollow.CameraDistance;
     }
 
     void Start()
@@ -191,11 +193,32 @@ public class PlayerController : MonoBehaviour
     {
         m_MovementSpeed = m_BaseMovementSpeed + m_MovementSpeedBoostPower;
         Vector3 damp = m_BaseCameraDamping / 2;
+        float boostCamDistance = m_BaseCameraDistance + 30;
         m_Cinemachine3rdPersonFollow.Damping = damp;
+
+        StopCoroutine("moveCameraDistance");
+        StartCoroutine("moveCameraDistance", boostCamDistance);
+        
 
         yield return new WaitForSeconds(m_MovementSpeedBoostTime);
 
         m_MovementSpeed = m_BaseMovementSpeed;
         m_Cinemachine3rdPersonFollow.Damping = m_BaseCameraDamping;
+
+        StopCoroutine("moveCameraDistance");
+        StartCoroutine("moveCameraDistance", m_BaseCameraDistance);
     }
+
+    IEnumerator moveCameraDistance(float i_NewDistance)
+    {
+        float time = 0.2f;
+        float currentDis = m_Cinemachine3rdPersonFollow.CameraDistance;
+        while (!Mathf.Approximately(currentDis,i_NewDistance))
+        {
+            m_Cinemachine3rdPersonFollow.CameraDistance = Mathf.Lerp(currentDis, i_NewDistance, time);
+            yield return null;
+        }
+    }
+
+
 }

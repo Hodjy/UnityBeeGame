@@ -11,7 +11,7 @@ namespace ColorSystem
     public class ColorSpreader : MonoBehaviour
     {
         [SerializeField] private List<GameObject> m_ObjectsParentsToSpread;
-        [SerializeField] private List<GameObject> m_ObjectsParentsToSpreadSecondary;
+        //[SerializeField] private List<GameObject> m_ObjectsParentsToSpreadSecondary;
 
         public void SpreadToMain(eColors i_ColorToSpread)
         {
@@ -33,9 +33,9 @@ namespace ColorSystem
             }
         }
 
-        public void SpreadSecondary(eColors i_ColorToSpread)
+        private void SpreadSecondary(eColors i_ColorToSpread)
         {
-            spread(i_ColorToSpread, m_ObjectsParentsToSpreadSecondary);
+            //spread(i_ColorToSpread, m_ObjectsParentsToSpreadSecondary);
         }
     }
 }
