@@ -11,7 +11,7 @@ Game download is available at the Releases tab, simply download the latest build
 ## How To Play:
 WASD to move.                                   
 Mouse to look around and fly in that direction.                         
-To interact with any interactable object, simple bump into it.                          
+To interact with any interactable object, simply bump into it.                          
 Esc to quit game.                       
 
 ### Speed boost
