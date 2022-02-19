@@ -8,11 +8,14 @@ Blender for 3D Models and Animations, some assets were taken from the Unity Stor
 ## Download
 Game download is available at the Releases tab, simply download the latest build zip file.                      
 
-## How To Play:
+### Controls:
 WASD to move.                                   
 Mouse to look around and fly in that direction.                         
 To interact with any interactable object, simply bump into it.                          
 Esc to quit game.                       
+
+### Objective:
+The goal of the game is to deliver every pollen to a beehive with the same color.
 
 ### Speed boost
 ![SpeedBoost](https://user-images.githubusercontent.com/62711261/154805713-acad543b-5fee-4982-836b-43c8497951c8.gif)                
