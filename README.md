@@ -12,6 +12,7 @@ Game download is available at the Releases tab, simply download the latest build
 WASD to move.                                   
 Mouse to look around and fly in that direction.                         
 To interact with any interactable object, simple bump into it.                          
+Esc to quit game.                       
 
 ### Speed boost
 ![SpeedBoost](https://user-images.githubusercontent.com/62711261/154805713-acad543b-5fee-4982-836b-43c8497951c8.gif)                
