@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
     [Header("Abilities")]
     [SerializeField] private float m_FlyBoostPower = 5;
 
+    [Header("PlayerEffects")]
+    [SerializeField] private TrailRenderer m_SpeedBoostEffect;
+
     private bool m_IsFlying = false; // TODO check if needed. If not, remove.
 
     public bool IsMovementAvailable { get => m_IsMovementAvailable; set => m_IsMovementAvailable = value; }
@@ -197,31 +200,47 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator startMovementBoost()
     {
-        m_MovementSpeed = m_BaseMovementSpeed + m_MovementSpeedBoostPower;
-        Vector3 damp = m_BaseCameraDamping / 2;
-        float boostCamDistance = m_BaseCameraDistance + 30;
-        m_Cinemachine3rdPersonFollow.Damping = damp;
+        startMoveBoost();
 
         //StopCoroutine("moveCameraDistance");
         //StartCoroutine("moveCameraDistance", boostCamDistance);
-        
+
 
         yield return new WaitForSeconds(m_MovementSpeedBoostTime);
 
-        m_MovementSpeed = m_BaseMovementSpeed;
-        m_Cinemachine3rdPersonFollow.Damping = m_BaseCameraDamping;
+        stopMoveBoost();
 
         //StopCoroutine("moveCameraDistance");
         //StartCoroutine("moveCameraDistance", m_BaseCameraDistance);
     }
 
+    private void stopMoveBoost()
+    {
+        m_MovementSpeed = m_BaseMovementSpeed;
+        m_Cinemachine3rdPersonFollow.Damping = m_BaseCameraDamping;
+        m_SpeedBoostEffect.enabled = false;
+        StartCoroutine("moveCameraDistance", m_BaseCameraDistance);
+    }
+
+    private void startMoveBoost()
+    {
+        m_MovementSpeed = m_BaseMovementSpeed + m_MovementSpeedBoostPower;
+        Vector3 damp = m_BaseCameraDamping / 2;
+        float boostCamDistance = m_BaseCameraDistance + 10;
+        m_Cinemachine3rdPersonFollow.Damping = damp;
+        m_SpeedBoostEffect.enabled = true;
+        StartCoroutine("moveCameraDistance", boostCamDistance);
+    }
+
     IEnumerator moveCameraDistance(float i_NewDistance)
     {
-        float time = 0.2f;
+        float duration = 0.2f;
+        float elapsed = 0.0f;
         float currentDis = m_Cinemachine3rdPersonFollow.CameraDistance;
-        while (!Mathf.Approximately(currentDis,i_NewDistance))
+        while (elapsed < duration)
         {
-            m_Cinemachine3rdPersonFollow.CameraDistance = Mathf.Lerp(currentDis, i_NewDistance, time);
+            m_Cinemachine3rdPersonFollow.CameraDistance = Mathf.Lerp(currentDis, i_NewDistance, elapsed / duration);
+            elapsed += Time.deltaTime;
             yield return null;
         }
     }
