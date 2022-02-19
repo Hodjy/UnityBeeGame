@@ -100,7 +100,13 @@ public class PlayerController : MonoBehaviour
     {
         m_InputActions.Player.Fly.performed += setIsFlying;
         m_InputActions.Player.Fly.canceled += setIsFlying;
+        m_InputActions.Player.Quit.performed += quitGame;
         //m_InputActions.Player.Move.performed += cxt => movePlayer(cxt.ReadValue<Vector2>());
+    }
+
+    private void quitGame(InputAction.CallbackContext i_CallbackContext)
+    {
+        Application.Quit();
     }
 
     private void setIsFlying(InputAction.CallbackContext i_Context)
